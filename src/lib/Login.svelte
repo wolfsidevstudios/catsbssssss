@@ -1,4 +1,8 @@
 <script lang="ts">
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
   let email = $state('');
   let password = $state('');
   let errorMessage = $state('');
@@ -14,10 +18,9 @@
     // Simulate API call or authentication
     console.log('Attempting login with:', { email, password });
 
-    // In a real app, you'd send this to a server and handle the response
     // For now, just log and clear fields on success, or show an error.
     if (email === 'user@example.com' && password === 'password123') {
-      alert('Login successful! (Simulated)');
+      dispatch('loginSuccess', { email: email, name: 'Demo User' });
       email = '';
       password = '';
     } else {
